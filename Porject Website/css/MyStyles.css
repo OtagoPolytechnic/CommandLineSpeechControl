@@ -1,0 +1,211 @@
+body
+{
+	background-color: #f2f2f2;
+}
+
+ul 
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #374859;
+    position: fixed;
+    top: 0;
+    width: 100%;
+	height: 65px;
+}
+
+.navbar navbar-fixed-top navbar-light bg-faded  ul li:hover a{ 
+     color: #ffad33;
+}
+
+li 
+{
+	float: left;
+}
+
+li a 
+{
+    display: block;
+    color: white;
+    padding: 25px 210px;
+}
+
+li a:hover:not(.active) 
+{
+    background-color: #6d7d8b;
+}
+
+.jumbotron 
+{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	color: inherit;
+	background-color: #ffffff;
+}
+
+.jumbotron h1, .jumbotron .h1 
+{
+	color: inherit;
+}
+
+.jumbotron p 
+{
+	margin-bottom: 15px;
+	font-size: 21px;
+	font-weight: 200;
+	text-align: center;
+}
+.jumbotron > hr 
+{
+  border-top-color: #d5d5d5;
+}
+.container .jumbotron, .container-fluid .jumbotron 
+{
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 6px;
+}
+.jumbotron .container 
+{
+  max-width: 100%;
+}
+
+.jumbotron h3
+{
+	font-size: 100px;
+	text-align: center;
+}
+
+
+.thumbnail 
+{
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: border .2s ease-in-out;
+	-o-transition: border .2s ease-in-out;
+	transition: border .2s ease-in-out;
+}
+
+.thumbnailclass2
+{
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border-radius: 4px;
+	-webkit-transition: border .2s ease-in-out;
+	-o-transition: border .2s ease-in-out;
+	transition: border .2s ease-in-out;
+}
+
+.thumbnail > img, .thumbnail a > img 
+{
+	margin-right: auto;
+	margin-left: auto;
+  
+	height: 275px;
+	width: 350px;
+}
+
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active 
+{
+	border-color: #374859;
+}
+
+.thumbnail .caption 
+{
+	text-align: center;
+	padding: 15px;
+	height: 210px;
+	color: #000000;
+	
+}
+
+.img-thumbnail 
+{
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.footer
+{
+    height: 160px;
+    background-color: #374859;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+h5
+{
+	color: #374859; 
+font-family: 'Helvetica Neue', 
+sans-serif; 
+font-size: 20px; 
+font-weight: bold; 
+letter-spacing: -1px; 
+line-height: 1; 
+text-align: center;
+}
+
+
+h6 
+{ 
+color: #374859; 
+font-family: 'Helvetica Neue', 
+sans-serif; 
+font-size: 150px; 
+font-weight: bold; 
+letter-spacing: -1px; 
+line-height: 1; 
+text-align: center; 
+}
+
+span
+{
+	text-align: center;
+}
+
+.img-circle {
+   width: 300px;
+	height: 320px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://link-to-your/image.jpg) no-repeat;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
