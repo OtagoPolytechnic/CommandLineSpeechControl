@@ -1,0 +1,103 @@
+body
+{
+	background-color: #f2f2f2;
+}
+
+/* The Second Jumpotron CSS Home Page */
+
+.jumpotron2
+{
+	background-color: black;
+}
+
+.container .jumbotron2, .container-fluid .jumbotron2 
+{
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px;
+}
+.jumbotron2 
+{
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron2
+{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #ffffff;
+}
+
+/* Project Panel CSS, Project Page */
+
+.thumbnail 
+{
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: border .2s ease-in-out;
+	-o-transition: border .2s ease-in-out;
+	transition: border .2s ease-in-out;
+}
+
+.thumbnail > img, .thumbnail a > img 
+{
+	margin-right: auto;
+	margin-left: auto;
+  
+	height: 275px;
+	width: 350px;
+}
+
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active 
+{
+	border-color: #374859;
+}
+
+.thumbnail .caption 
+{
+	text-align: center;
+	padding: 15px;
+	height: 210px;
+	color: #000000;
+	
+}
+
+.img-thumbnail 
+{
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.btn 
+{
+	background-color: #005aab;
+	color: white;
+}
+
+h2
+{
+	text-align: center;
+	font-family: Times New Roman;
+}
+
+p
+{
+	text-align: center;
+}
