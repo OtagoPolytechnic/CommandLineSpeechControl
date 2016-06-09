@@ -7,15 +7,15 @@ import speech_recognition as sr
 
 def speechRecog(recogniser, audio):
  
-		try:
-			audioText = recogniser.recognize_google(audio)
-			findCommandWords(audioText)
-		except LookupError:                            # speech is unintelligible
-			print("Could not understand audio")
-		except sr.UnknownValueError:
-			print("Google Speech Recognition could not understand the audio")
-		except sr.RequestError:
-			print("Could not request results from Google Speech Recognition")
+	try:
+		audioText = recogniser.recognize_google(audio)
+		findCommandWords(audioText)
+	except LookupError:                            # speech is unintelligible
+		print("Could not understand audio")
+	except sr.UnknownValueError:
+		print("Google Speech Recognition could not understand the audio")
+	except sr.RequestError:
+		print("Could not request results from Google Speech Recognition")
 
 			
 #-----------------------------------------
