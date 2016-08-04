@@ -1,46 +1,90 @@
-from tkinter import *
-from tkinter import ttk
+import sys
+import subprocess
+from PyQt4 import QtGui, QtCore
 
-import speech_recognition as sr
-import os
+class Example(QtGui.QWidget):
+    
+    def __init__(self):
+        super(Example, self).__init__()
+        
+        self.initUI()
+        
+    def initUI(self):               
+        
+        self.setGeometry(50, 50, 375, 300)        
+        self.setWindowTitle('Message box')
+        self.center()
+        self.setWindowTitle('Command Line GUI')
 
-root = Tk()
+        playButton = QtGui.QPushButton("Play")
+        pauseButton = QtGui.QPushButton("Pause")
+        stopButton = QtGui.QPushButton("Stop")
 
-root.wm_title("Command Line GUI")
-root.resizable(width = False, height = False)
+        playButton.clicked.connect(lambda:self.run('t.py'))
+        stopButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
 
-panedwindow = ttk.Panedwindow(root, orient = HORIZONTAL)
-panedwindow.pack(fill = BOTH, expand = True)
-frameOne = ttk.Frame(panedwindow, width = 100, height = 300, relief = SOLID)
-frameTwo = ttk.Frame(panedwindow, width = 400, height = 400, relief = SOLID)
-panedwindow.add(frameOne, weight = 1)
-panedwindow.add(frameTwo, weight = 4)
+        hbox = QtGui.QHBoxLayout()
+        hbox.addStretch(1)
+        hbox.addWidget(playButton)
+        hbox.addWidget(pauseButton)
+        hbox.addWidget(stopButton)
 
-bottomframe = Frame(root)
-bottomframe.pack(side = BOTTOM)
+        vbox = QtGui.QVBoxLayout()
+        vbox.addStretch(1)
+        vbox.addLayout(hbox)
 
-treeview = ttk.Treeview(frameOne, height = 20)
-treeview.pack()
-treeview.insert('', '0', 'item1', text = 'Instructions')
-treeview.insert('item1', 'end', 'Intrsuctions', text = 'Instructions')
-treeview.insert('', '1', 'item2', text = 'Linux Commands')
-treeview.insert('item2', 'end', 'BasicCommands', text = 'Basic Commands')
-treeview.insert('item2', 'end', 'IntermediateCommands', text = 'Intermediate Commands')
-treeview.insert('item2', 'end', 'AdvancedCommands', text = 'Advanced Commands')
-treeview.insert('', '2', 'item3', text = 'Shortcuts/Hotkeys')
-treeview.insert('item3', 'end', 'Shortcuts', text = 'Keyboard Shortcuts')
+        self.lbl = QtGui.QLabel("", self)
 
-API = StringVar()
+        combo = QtGui.QComboBox(self)
+        combo.addItem("")
+        combo.addItem("Google API")
+        combo.addItem("Python Local API")
+        combo.addItem("Sphinx API")
+        combo.addItem("Local API")
+        combo.addItem("Other API")
 
-ttk.Radiobutton(frameTwo, text = 'Python', variable = API, value = 'Python').pack(side = LEFT, padx = 5)
-ttk.Radiobutton(frameTwo, text = 'Google', variable = API, value = 'Google').pack(side = LEFT, padx = 5)
-ttk.Radiobutton(frameTwo, text = 'Sphinx', variable = API, value = 'Sphinx').pack(side = LEFT, padx = 5)
-ttk.Radiobutton(frameTwo, text = 'Local', variable = API, value = 'Local').pack(side = LEFT ,padx = 5)
-ttk.Radiobutton(frameTwo, text = 'Other', variable = API, value = 'Other').pack(side = LEFT, padx = 5)
+        combo.move(150, 150)
+        self.lbl.move(50, 150)
 
-button1 = ttk.Button(bottomframe, text = "Pause").pack(side = LEFT, padx = 5, pady = 5)
-button2 = ttk.Button(bottomframe, text = "Play").pack(side = LEFT, padx = 5, pady = 5)
-button3 = ttk.Button(bottomframe, text = "Stop").pack(side = LEFT, padx = 5, pady = 5)
+        combo.activated[str].connect(self.onActivated)
 
-root.mainloop()
 
+        self.setLayout(vbox)
+        self.show()
+
+    def run(self, path):
+        subprocess.call(['pythonw',path])
+
+    def onActivated(self, text):
+      
+        self.lbl.setText(text)
+        self.lbl.adjustSize()
+        
+    def closeEvent(self, event):
+        
+        reply = QtGui.QMessageBox.question(self, 'Message',
+            "Are you sure to quit?", QtGui.QMessageBox.Yes | 
+            QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+
+        if reply == QtGui.QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
+    def center(self):
+        
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
+
+             
+def main():
+
+    app = QtGui.QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()

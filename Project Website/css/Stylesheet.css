@@ -1,0 +1,64 @@
+body
+{
+	
+}
+
+p
+{
+	text-align: center;
+}
+
+h1
+{
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+	font-size: 22px;
+	line-height: 40px;
+	color: #355681;
+	text-transform: uppercase;
+}
+
+h2
+{
+	margin: 1em 0 0.5em 0;
+	color: #148773;
+	font-size: 26px;
+	line-height: 40px;
+	font-weight: bold;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+h3
+{
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	text-align: center;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+	font-size: 22px;
+	line-height: 40px;
+	color: #355681;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgba(53,86,129, 0.3);
+}
+
+.jumbotron
+{
+	border-style: outset;
+}
+
+.btn btn-lg btn-success
+{
+	background-color: black;
+}
+
+img 
+{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
