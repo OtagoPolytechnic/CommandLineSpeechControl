@@ -1,4 +1,6 @@
 import speech_recognition as sr
+import sys
+print(sys.argv[1])
 
 #-----------------------------------------
 #Multi-threading function 
