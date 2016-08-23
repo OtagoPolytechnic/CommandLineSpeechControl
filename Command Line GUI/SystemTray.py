@@ -7,7 +7,13 @@ class SystemTray(QtGui.QSystemTrayIcon):
         super(SystemTray, self).__init__(icon, parent)
 
         self.menu = QtGui.QMenu(parent)
-        settings_action = self.menu.addAction("Settings")
+        settings_action = self.menu.addAction("Instructions")
+        settings_action.triggered.connect(self.open_settings)
+
+        self.menu.addSeparator()
+
+        self.menu = QtGui.QMenu(parent)
+        settings_action = self.menu.addAction("Instructions")
         settings_action.triggered.connect(self.open_settings)
 
         self.menu.addSeparator()
@@ -27,32 +33,33 @@ class SettingsDialog(QtGui.QDialog):
         super(SettingsDialog, self).__init__()
 
         self.resize(300, 300)
-        self.setWindowTitle('Settings')
+        self.setWindowTitle('Instructions')
         vbox = QtGui.QHBoxLayout()
 
         self.channels_list = QtGui.QListView(self)
         vbox.addWidget(self.channels_list)
 
+
         self.add_box = QtGui.QLineEdit(self)
         vbox.addWidget(self.add_box)
 
         self.setLayout(vbox)
+
 
 class SettingsDialog(QtGui.QDialog):
     def __init__(self):
         super(SettingsDialog, self).__init__()
 
         self.resize(300, 300)
-        self.setWindowTitle('Settings')
+        self.setWindowTitle('Instructions')
         vbox = QtGui.QHBoxLayout()
 
         self.channels_list = QtGui.QListView(self)
         vbox.addWidget(self.channels_list)
 
-        self.add_box = QtGui.QLineEdit(self)
-        vbox.addWidget(self.add_box)
-
         self.setLayout(vbox)
+
+        
 
 def main():
 
@@ -61,7 +68,6 @@ def main():
     tw = SystemTray(QtGui.QIcon("Icon.png"), widget)
 
     app.exec_()
-    print("Done!")
 
 if __name__ == '__main__':
     main()
