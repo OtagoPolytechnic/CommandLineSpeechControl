@@ -3,7 +3,7 @@ import speech_recognition as sr
 #-----------------------------------------
 #Dictionary	
 #-----------------------------------------
-commandDict = {'Change Directory': 'cd', 'List Directories': 'ls'}
+commandDict = {'change directory': 'cd', 'list directories': 'ls'}
 
 
 #-----------------------------------------
