@@ -1,27 +1,22 @@
 import speech_recognition as sr
-
-#---------------------------------------------
-#Word class to hold all the command words and 
-#what they need to be replaced with
-#---------------------------------------------
-
-class Word:
-
-	def __init__(self , word, replacement):
-		self.word = word
-		self.replacement = replacement
 	
-	
+#-----------------------------------------
+#Dictionary	
+#-----------------------------------------
+commandDict = {'Change Directory': 'cd', 'List Directories': 'ls'}
+
+
 #-----------------------------------------
 #Multi-threading function 
 #start of speech recognition
 #-----------------------------------------
 
-def speechRecog(recogniser, audio):
+#used when the user want to do speech recognition through google
+def googleSpeechRecog(recogniser, audio):
  
 	try:
 		audioText = recogniser.recognize_google(audio)
-		findCommandWords(audioText)
+		findWords(audioText)
 	except LookupError:            
 		print("Could not understand audio")
 	except sr.UnknownValueError:
@@ -29,21 +24,26 @@ def speechRecog(recogniser, audio):
 	except sr.RequestError:
 		print("Could not request results from Google Speech Recognition")
 
+#used when the user want to do speech recognition offline through CMU Sphinx	
+def cmuSpeechRecog(recogniser, audio):
+ 
+	try:
+		audioText = recogniser.recognize_sphinx(audio)
+	except LookupError:            
+		print("Could not understand audio")
 		
 #-----------------------------------------
 #run all words through the reg expressions 
 #to try find any command words
 #-----------------------------------------
+def process(s):
+        return(s, "")
 
-def findCommandWords(audioString):
-	
-	#searching the list of words
-	alteredString = audioString
-	
-	for words in wordsList:
-		alteredString = alteredString.replace(words.word, words.replacement)
-		
-	print(alteredString)
+def findWords(string):
+	spoken_cmd, arguments = process(string)
+	command = commandDict[spoken_cmd]
+
+	print(command, arguments)
 
 
 #-----------------------------------------
@@ -59,16 +59,14 @@ with sr.Microphone() as mic:
 	#so that it doesnt try and recognize random noise into words
 	print("Adjusting for ambient room noise")
 	recogniser.adjust_for_ambient_noise(mic)
+	recogniser.energy_threshold = 400
+	recogniser.dynamic_energy_threshold = False
 
 print("Speak when ready")
 
 #starts the method to make a background thread and continually search for sound
-stopListening = recogniser.listen_in_background(mic, speechRecog)
+stopListening = recogniser.listen_in_background(mic, googleSpeechRecog)
 
-#adding command words to a list
-wordsList = []
-wordsList.append(Word("dash","-"))
-wordsList.append(Word("change directory", "cd"))
 
 #keeps the program running
 while (True):
