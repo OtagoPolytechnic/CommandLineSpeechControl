@@ -1,11 +1,18 @@
 import speech_recognition as sr
+import re
+import subprocess
 	
 #-----------------------------------------
 #Dictionary	
 #-----------------------------------------
-commandDict = {'change directory': 'cd', 'list directories': 'ls'}
+commandDict = {'change directory': 'cd', 'list directories': 'ls', 'make directory': 'mkdir'}
 
+class WordReplacments:
 
+	def __init__(self , word, replacement):
+		self.word = word
+		self.replacement = replacement
+		
 #-----------------------------------------
 #Multi-threading function 
 #start of speech recognition
@@ -36,20 +43,52 @@ def cmuSpeechRecog(recogniser, audio):
 #run all words through the reg expressions 
 #to try find any command words
 #-----------------------------------------
-def process(s):
-        return(s, "")
+def process(string):
+	#hard coded reg expressions
+	command = re.match(r'make directory', string, re.I)
+	arg = re.match(r'make directory\s(.*)$', string, re.I)
+	print(command.group())
+	print(arg.group(1))	
+	
+	return(command.group(), arg.group(1))	
 
 def findWords(string):
-	spoken_cmd, arguments = process(string)
+	newString = findDashesAndSlashes(string)
+	spoken_cmd, arguments = process(newString)
 	command = commandDict[spoken_cmd]
 
 	print(command, arguments)
+	runCommand(command, arguments)
+
+def runCommand(command, args):
+	mkdir = 'mkdir test'
+	subprocess.Popen(mkdir.split(), shell=True)
 
 
+#finds - and / etc
+def findDashesAndSlashes(audioString):
+  	
+	alteredString = audioString
+	
+	for words in wordsList:
+		alteredString = alteredString.replace(words.word, words.replacement)
+	
+	return alteredString
 #-----------------------------------------
 #Setting up Speech Recognition
 #-----------------------------------------
-
+#adding command words to a list
+wordsList = []
+wordsList.append(WordReplacments("dash","-"))
+wordsList.append(WordReplacments("slash", "/"))
+wordsList.append(WordReplacments("forward slash", "/"))
+wordsList.append(WordReplacments("forwardslash", "/"))
+wordsList.append(WordReplacments("back slash", "\\"))
+wordsList.append(WordReplacments("backslash", "\\"))
+wordsList.append(WordReplacments("dot", "."))
+wordsList.append(WordReplacments("full stop", "."))
+wordsList.append(WordReplacments("period", "."))
+ 
 recogniser = sr.Recognizer()
 
 #set default microphone as the source for audio
