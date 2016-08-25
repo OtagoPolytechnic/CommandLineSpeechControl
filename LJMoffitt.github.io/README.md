@@ -1,2 +1,2 @@
-# LJMoffitt.github.io-
-Assistive Technology Website 
+Otago Polytechnic Open Source Accessibility Software Hub
+
