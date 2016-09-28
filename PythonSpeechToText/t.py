@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import re
 import subprocess
+import cloudSpeech
 	
 #-----------------------------------------
 #Dictionary	
@@ -19,6 +20,7 @@ class WordReplacments:
 #-----------------------------------------
 
 #used when the user want to do speech recognition through google
+#mainly for testing
 def googleSpeechRecog(recogniser, audio):
  
 	try:
@@ -31,6 +33,20 @@ def googleSpeechRecog(recogniser, audio):
 	except sr.RequestError:
 		print("Could not request results from Google Speech Recognition")
 
+#used when the user want to do speech recognition through google cloud Speech api
+def googleCloudSpeechRecog(recogniser, audio):
+ 
+	try:
+		audioText = cloudSpeech.Recognize(audio.get_raw_data())
+		print(audioText)
+		#findWords(audioText)
+	except LookupError:            
+		print("Could not understand audio")
+	except sr.UnknownValueError:
+		print("Google Speech Recognition could not understand the audio")
+	except sr.RequestError:
+		print("Could not request results from Google Speech Recognition")
+		
 #used when the user want to do speech recognition offline through CMU Sphinx	
 def cmuSpeechRecog(recogniser, audio):
  
@@ -104,7 +120,7 @@ with sr.Microphone() as mic:
 print("Speak when ready")
 
 #starts the method to make a background thread and continually search for sound
-stopListening = recogniser.listen_in_background(mic, googleSpeechRecog)
+stopListening = recogniser.listen_in_background(mic, googleCloudSpeechRecog)
 
 
 #keeps the program running
