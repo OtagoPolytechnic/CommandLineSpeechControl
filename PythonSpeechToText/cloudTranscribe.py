@@ -36,10 +36,6 @@ def main(speech_file):
     """
     
     # [START construct_request]
-    #with open(speech_file, 'rb') as speech:
-        # Base64 encode the binary audio file for inclusion in the JSON
-        # request.
-        #speech_content = base64.b64encode(speech.read())
     speech_content = base64.b64encode(speech_file)
 
     service = get_speech_service()

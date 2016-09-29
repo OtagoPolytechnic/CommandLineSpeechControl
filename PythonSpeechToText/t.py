@@ -1,12 +1,12 @@
 import speech_recognition as sr
 import re
-import subprocess
 import cloudSpeech
+import runCommands
 	
 #-----------------------------------------
 #Dictionary	
 #-----------------------------------------
-commandDict = {'change directory': 'cd', 'list directories': 'ls', 'make directory': 'mkdir'}
+commandDict = {'change directory': 'cd', 'list directories': 'dir', 'make directory': 'mkdir'}
 
 class WordReplacments:
 
@@ -71,14 +71,19 @@ def process(string):
 def findWords(string):
 	newString = findDashesAndSlashes(string)
 	spoken_cmd, arguments = process(newString)
-	command = commandDict[spoken_cmd]
+	
+	#if the command is not in the dictionary it will just print it out
+	#using the echo command
+	try:
+		command = commandDict[spoken_cmd]
+	except KeyError:
+		command = 'echo'
 
 	print(command, arguments)
 	runCommand(command, arguments)
 
 def runCommand(command, args):
-	mkdir = 'mkdir test'
-	subprocess.Popen(mkdir.split(), shell=True)
+	prompt.runCommand(command + " " + args)
 
 
 #finds - and / etc
@@ -93,6 +98,11 @@ def findDashesAndSlashes(audioString):
 #-----------------------------------------
 #Setting up Speech Recognition
 #-----------------------------------------
+
+#setting up the command prompt window to be able to send commands
+prompt = runCommands.CommandPrompt()
+
+
 #adding command words to a list
 wordsList = []
 wordsList.append(WordReplacments("dash","-"))
