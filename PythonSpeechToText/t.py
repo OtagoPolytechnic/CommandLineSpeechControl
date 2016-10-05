@@ -1,24 +1,29 @@
 import speech_recognition as sr
 import re
-import cloudSpeech
-import runCommands
-	
+#import cloudSpeech
+#import runCommands
+import csv
+
 #-----------------------------------------
 #Dictionary	
 #-----------------------------------------
-commandDict = {'change directory': 'cd', 'list directories': 'dir', 'make directory': 'mkdir'}
 
 class WordReplacments:
 
-	def __init__(self , word, replacement):
-		self.word = word
+	def __init__(self , command, replacement):
+		self.command = command
 		self.replacement = replacement
 		
 #-----------------------------------------
 #Multi-threading function 
 #start of speech recognition
 #-----------------------------------------
-
+def csvReading():
+	with open('SpeechRecgonitionFile.csv', 'r') as csvfile:
+		spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+		for row in spamreader:
+			 wordsList.append(WordReplacments(row[0], row[1]))
+			
 #used when the user want to do speech recognition through google
 #mainly for testing
 def googleSpeechRecog(recogniser, audio):
@@ -61,23 +66,23 @@ def cmuSpeechRecog(recogniser, audio):
 #-----------------------------------------
 def process(string):
 	#hard coded reg expressions
-	command = re.match(r'make directory', string, re.I)
-	arg = re.match(r'make directory\s(.*)$', string, re.I)
-	print(command.group())
-	print(arg.group(1))	
+	command = "echo"
+	arg = string
+	for commands in wordsList:
+		if re.match(commands.command, string, re.I) is not None:
+			command = commands.replacement
+			temparg = re.match(commands.command + r'\s(.*)$', string, re.I)
+			arg = temparg.group(1)
+
+	print(command)
+	print(arg)	
 	
-	return(command.group(), arg.group(1))	
+	return(command, arg)	
 
 def findWords(string):
 	newString = findDashesAndSlashes(string)
 	spoken_cmd, arguments = process(newString)
 	
-	#if the command is not in the dictionary it will just print it out
-	#using the echo command
-	try:
-		command = commandDict[spoken_cmd]
-	except KeyError:
-		command = 'echo'
 
 	print(command, arguments)
 	runCommand(command, arguments)
@@ -85,37 +90,22 @@ def findWords(string):
 def runCommand(command, args):
 	prompt.runCommand(command + " " + args)
 
-
-#finds - and / etc
-def findDashesAndSlashes(audioString):
-  	
-	alteredString = audioString
-	
-	for words in wordsList:
-		alteredString = alteredString.replace(words.word, words.replacement)
-	
-	return alteredString
 #-----------------------------------------
 #Setting up Speech Recognition
 #-----------------------------------------
 
 #setting up the command prompt window to be able to send commands
-prompt = runCommands.CommandPrompt()
-
+#prompt = runCommands.CommandPrompt()
 
 #adding command words to a list
 wordsList = []
-wordsList.append(WordReplacments("dash","-"))
-wordsList.append(WordReplacments("slash", "/"))
-wordsList.append(WordReplacments("forward slash", "/"))
-wordsList.append(WordReplacments("forwardslash", "/"))
-wordsList.append(WordReplacments("back slash", "\\"))
-wordsList.append(WordReplacments("backslash", "\\"))
-wordsList.append(WordReplacments("dot", "."))
-wordsList.append(WordReplacments("full stop", "."))
-wordsList.append(WordReplacments("period", "."))
- 
+
 recogniser = sr.Recognizer()
+
+csvReading()
+
+string = "make directory test"
+process(string)
 
 #set default microphone as the source for audio
 with sr.Microphone() as mic:
@@ -130,12 +120,12 @@ with sr.Microphone() as mic:
 print("Speak when ready")
 
 #starts the method to make a background thread and continually search for sound
-stopListening = recogniser.listen_in_background(mic, googleCloudSpeechRecog)
+#stopListening = recogniser.listen_in_background(mic, googleCloudSpeechRecog)
 
 
 #keeps the program running
-while (True):
-	var = 1
+#while (True):
+	#var = 1
 
 #stops the background listening	
-stopListening()
+#SstopListening()
