@@ -19,16 +19,16 @@ class SpeechToCommandLine:
 		#creates a word list from the command words csv file
 		self.wordsList = []
 		self.csvReading()
-		
-		#setting up the command prompt window to be able to send commands
-		self.prompt = runCommands.CommandPrompt()
-				
+						
 		self.recogniser = sr.Recognizer()
 
 		
 	#starts the speech recognition
 	def startSpeechRecognition(self):
-
+		
+		#setting up the command prompt window to be able to send commands
+		self.prompt = runCommands.CommandPrompt()
+		
 		#set default microphone as the source for audio
 		with sr.Microphone() as mic:
 
@@ -43,8 +43,7 @@ class SpeechToCommandLine:
 
 		#starts the method to make a background thread and continually search for sound
 		self.stopListening = self.recogniser.listen_in_background(mic, self.googleSpeechRecog)
-
-		
+	
 	#stops the speech recognition
 	def stopSpeechRecognition(self):
 		self.stopListening()
@@ -66,10 +65,10 @@ class SpeechToCommandLine:
 	#-----------------------------------------	
 	#finds the words
 	def findWords(self, string):
-		spoken_cmd, arguments = self.process(newString)
+		spoken_cmd, arguments = self.process(string)
 
-		print(command, arguments)
-		self.runCommand(command, arguments)
+		print(spoken_cmd, arguments)
+		self.runCommand(spoken_cmd, arguments)
 	
 	
 	#run all words through the reg expressions to try find any command words
@@ -82,9 +81,6 @@ class SpeechToCommandLine:
 				command = commands.replacement
 				temparg = re.match(commands.command + r'\s(.*)$', string, re.I)
 				arg = temparg.group(1)
-
-		print(command)
-		print(arg)	
 
 		return(command, arg)
 
@@ -102,7 +98,7 @@ class SpeechToCommandLine:
 	#-----------------------------------------
 	#used when the user want to do speech recognition through google
 	#mainly for testing
-	def googleSpeechRecog(recogniser, audio):
+	def googleSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = recogniser.recognize_google(audio)
@@ -115,7 +111,7 @@ class SpeechToCommandLine:
 			print("Could not request results from Google Speech Recognition")
 
 	#used when the user want to do speech recognition through google cloud Speech api
-	def googleCloudSpeechRecog(recogniser, audio):
+	def googleCloudSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = cloudSpeech.Recognize(audio.get_raw_data())
@@ -129,7 +125,7 @@ class SpeechToCommandLine:
 			print("Could not request results from Google Speech Recognition")
 			
 	#used when the user want to do speech recognition offline through CMU Sphinx	
-	def cmuSpeechRecog(recogniser, audio):
+	def cmuSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = recogniser.recognize_sphinx(audio)
