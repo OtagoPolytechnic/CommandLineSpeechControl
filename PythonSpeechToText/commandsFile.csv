@@ -1,5 +1,24 @@
 make directory,mkdir
 change directory,cd
 list directories,dir
-Moves files,move
+move,move
 delete,del
+ping,ping
+check disk,chkdsk
+date,date
+copy,copy
+kill process,pskill
+list processes,pslist
+ns look up,nslookup
+format disk,format
+boot configuration,bootcfg
+change file permissions,cacls
+who am I,whoami
+remote shell,winrs
+remote management,winrm
+touch,touch
+volume,vol
+shutdown,shutdown
+tell net,telnet
+path,path
+ipconfig,ipconfig

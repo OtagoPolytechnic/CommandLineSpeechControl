@@ -52,10 +52,13 @@ class SpeechToCommandLine:
 	#Reads the csv file containing the list of commands and adds them
 	#to a list so that they can be searched through
 	def csvReading(self):
-		with open('commandsFile.csv', 'r') as csvfile:
-			spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-			for row in spamreader:
-				 self.wordsList.append(WordReplacments(row[0], row[1]))
+		try:
+			with open('commandsFile.csv', 'r') as csvfile:
+				spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+				for row in spamreader:
+					 self.wordsList.append(WordReplacments(row[0], row[1]))
+		except FileNotFoundError:
+			print("No Commands File")
 	
 
 
@@ -80,11 +83,14 @@ class SpeechToCommandLine:
 			if re.match(commands.command, string, re.I) is not None:
 				command = commands.replacement
 				temparg = re.match(commands.command + r'\s(.*)$', string, re.I)
-				arg = temparg.group(1)
+				try:
+					arg = temparg.group(1)
+				except:
+					arg = ""
+				return(command,arg)
 
-		return(command, arg)
-
-	
+		return(command,arg)
+		
 	#-----------------------------------------
 	#Runs Commands
 	#-----------------------------------------
