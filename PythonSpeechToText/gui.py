@@ -5,6 +5,7 @@ class speechGui(tkinter.Tk):
 	def __init__(self,parent):
 		tkinter.Tk.__init__(self,parent)
 		self.parent = parent
+		self.tk.call('wm', 'iconbitmap', self._w, '-default', 'icon.ico')
 		self.initialize()
 		self.recognizeSpeech = speech.SpeechToCommandLine()
 		
