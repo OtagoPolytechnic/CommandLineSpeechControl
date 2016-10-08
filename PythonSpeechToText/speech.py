@@ -24,7 +24,7 @@ class SpeechToCommandLine:
 
 		
 	#starts the speech recognition
-	def startSpeechRecognition(self):
+	def startSpeechRecognition(self, speechEngine):
 		
 		#setting up the command prompt window to be able to send commands
 		self.prompt = runCommands.CommandPrompt()
@@ -41,8 +41,14 @@ class SpeechToCommandLine:
 
 		print("Speak when ready")
 
-		#starts the method to make a background thread and continually search for sound
-		self.stopListening = self.recogniser.listen_in_background(mic, self.googleSpeechRecog)
+		#determines what speech recognition engine/api to use from what the user selected and then was passed into the function
+		#then starts the method to make a background thread and continually search for sound using the correct api
+		if speechEngine=='googleCloudSpeechRecog':
+			self.stopListening = self.recogniser.listen_in_background(mic, self.googleCloudSpeechRecog)
+		elif speechEngine=='cmuSpeechRecog':
+			self.stopListening = self.recogniser.listen_in_background(mic, self.cmuSpeechRecog)
+		else:
+			self.stopListening = self.recogniser.listen_in_background(mic, self.googleSpeechRecog)
 	
 	#stops the speech recognition
 	def stopSpeechRecognition(self):
@@ -76,19 +82,24 @@ class SpeechToCommandLine:
 	
 	#run all words through the reg expressions to try find any command words
 	def process(self, string):
-		#hard coded reg expressions
+		#the default for if there is no command said it will use echo to write it ro the screen
 		command = "echo"
 		arg = string
+		#runs through a list of different command words
 		for commands in self.wordsList:
+			#if one of the command words matches
 			if re.match(commands.command, string, re.I) is not None:
+				#makes the command to be returned the corresponding value in the list
 				command = commands.replacement
-				temparg = re.match(commands.command + r'\s(.*)$', string, re.I)
+				#gets the rest of the string for the arguments
+				restOfString = re.match(commands.command + r'\s(.*)$', string, re.I)
 				try:
-					arg = temparg.group(1)
+					arg = restOfString.group(1)
 				except:
 					arg = ""
+				#returns the command and arguments
 				return(command,arg)
-
+		#will return echo and the string if no command words were found
 		return(command,arg)
 		
 	#-----------------------------------------
