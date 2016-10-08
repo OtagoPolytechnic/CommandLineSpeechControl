@@ -5,10 +5,14 @@ class speechGui(tkinter.Tk):
 	def __init__(self,parent):
 		tkinter.Tk.__init__(self,parent)
 		self.parent = parent
-		self.tk.call('wm', 'iconbitmap', self._w, '-default', 'icon.ico')
-		self.initialize()
-		self.recognizeSpeech = speech.SpeechToCommandLine()
-		
+		try:
+			self.tk.call('wm', 'iconbitmap', self._w, '-default', 'icon.ico')
+			self.initialize()
+			self.recognizeSpeech = speech.SpeechToCommandLine()
+		except Exception as e:
+			print("Could not Load Application")
+			print(str(e))			
+			exit(0)		
 		
 	def initialize(self):
 		self.geometry("500x500")
