@@ -19,16 +19,16 @@ class SpeechToCommandLine:
 		#creates a word list from the command words csv file
 		self.wordsList = []
 		self.csvReading()
-		
-		#setting up the command prompt window to be able to send commands
-		self.prompt = runCommands.CommandPrompt()
-				
+						
 		self.recogniser = sr.Recognizer()
 
 		
 	#starts the speech recognition
-	def startSpeechRecognition(self):
-
+	def startSpeechRecognition(self, speechEngine):
+		
+		#setting up the command prompt window to be able to send commands
+		self.prompt = runCommands.CommandPrompt()
+		
 		#set default microphone as the source for audio
 		with sr.Microphone() as mic:
 
@@ -41,10 +41,15 @@ class SpeechToCommandLine:
 
 		print("Speak when ready")
 
-		#starts the method to make a background thread and continually search for sound
-		self.stopListening = self.recogniser.listen_in_background(mic, self.googleSpeechRecog)
-
-		
+		#determines what speech recognition engine/api to use from what the user selected and then was passed into the function
+		#then starts the method to make a background thread and continually search for sound using the correct api
+		if speechEngine=='googleCloudSpeechRecog':
+			self.stopListening = self.recogniser.listen_in_background(mic, self.googleCloudSpeechRecog)
+		elif speechEngine=='cmuSpeechRecog':
+			self.stopListening = self.recogniser.listen_in_background(mic, self.cmuSpeechRecog)
+		else:
+			self.stopListening = self.recogniser.listen_in_background(mic, self.googleSpeechRecog)
+	
 	#stops the speech recognition
 	def stopSpeechRecognition(self):
 		self.stopListening()
@@ -53,10 +58,13 @@ class SpeechToCommandLine:
 	#Reads the csv file containing the list of commands and adds them
 	#to a list so that they can be searched through
 	def csvReading(self):
-		with open('commandsFile.csv', 'r') as csvfile:
-			spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-			for row in spamreader:
-				 self.wordsList.append(WordReplacments(row[0], row[1]))
+		try:
+			with open('commandsFile.csv', 'r') as csvfile:
+				spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+				for row in spamreader:
+					 self.wordsList.append(WordReplacments(row[0], row[1]))
+		except FileNotFoundError:
+			print("No Commands File")
 	
 
 
@@ -66,29 +74,34 @@ class SpeechToCommandLine:
 	#-----------------------------------------	
 	#finds the words
 	def findWords(self, string):
-		spoken_cmd, arguments = self.process(newString)
+		spoken_cmd, arguments = self.process(string)
 
-		print(command, arguments)
-		self.runCommand(command, arguments)
+		print(spoken_cmd, arguments)
+		self.runCommand(spoken_cmd, arguments)
 	
 	
 	#run all words through the reg expressions to try find any command words
 	def process(self, string):
-		#hard coded reg expressions
+		#the default for if there is no command said it will use echo to write it ro the screen
 		command = "echo"
 		arg = string
+		#runs through a list of different command words
 		for commands in self.wordsList:
+			#if one of the command words matches
 			if re.match(commands.command, string, re.I) is not None:
+				#makes the command to be returned the corresponding value in the list
 				command = commands.replacement
-				temparg = re.match(commands.command + r'\s(.*)$', string, re.I)
-				arg = temparg.group(1)
-
-		print(command)
-		print(arg)	
-
-		return(command, arg)
-
-	
+				#gets the rest of the string for the arguments
+				restOfString = re.match(commands.command + r'\s(.*)$', string, re.I)
+				try:
+					arg = restOfString.group(1)
+				except:
+					arg = ""
+				#returns the command and arguments
+				return(command,arg)
+		#will return echo and the string if no command words were found
+		return(command,arg)
+		
 	#-----------------------------------------
 	#Runs Commands
 	#-----------------------------------------
@@ -102,7 +115,7 @@ class SpeechToCommandLine:
 	#-----------------------------------------
 	#used when the user want to do speech recognition through google
 	#mainly for testing
-	def googleSpeechRecog(recogniser, audio):
+	def googleSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = recogniser.recognize_google(audio)
@@ -115,7 +128,7 @@ class SpeechToCommandLine:
 			print("Could not request results from Google Speech Recognition")
 
 	#used when the user want to do speech recognition through google cloud Speech api
-	def googleCloudSpeechRecog(recogniser, audio):
+	def googleCloudSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = cloudSpeech.Recognize(audio.get_raw_data())
@@ -129,7 +142,7 @@ class SpeechToCommandLine:
 			print("Could not request results from Google Speech Recognition")
 			
 	#used when the user want to do speech recognition offline through CMU Sphinx	
-	def cmuSpeechRecog(recogniser, audio):
+	def cmuSpeechRecog(self, recogniser, audio):
 	 
 		try:
 			audioText = recogniser.recognize_sphinx(audio)
