@@ -8,8 +8,8 @@ shell = client.Dispatch("WScript.Shell")
 class CommandPrompt:
 	
     def __init__(self):        
-        self.openCmd()
-        EnumWindows(self.setCmdToForeground, None)
+        #self.openCmd()										Only need if wanting to open a new command prompt window to send to
+        #EnumWindows(self.setCmdToForeground, None)			^	
         shell.AppActivate(self.getPid())
 		
 	#Opens command window

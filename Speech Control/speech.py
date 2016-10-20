@@ -53,6 +53,7 @@ class SpeechToCommandLine:
 	#stops the speech recognition
 	def stopSpeechRecognition(self):
 		self.stopListening()
+		print("Recognition Stopped")
 		
 		
 	#Reads the csv file containing the list of commands and adds them
@@ -83,7 +84,7 @@ class SpeechToCommandLine:
 	#run all words through the reg expressions to try find any command words
 	def process(self, string):
 		#the default for if there is no command said it will use echo to write it ro the screen
-		command = "echo"
+		command = ""
 		arg = string
 		#runs through a list of different command words
 		for commands in self.wordsList:
@@ -100,15 +101,17 @@ class SpeechToCommandLine:
 				#returns the command and arguments
 				return(command,arg)
 		#will return echo and the string if no command words were found
-		return(command,arg)
+		return(command, arg)
 		
 	#-----------------------------------------
 	#Runs Commands
 	#-----------------------------------------
 	#Runs a command in the command prompt
 	def runCommand(self, command, args):
-		self.prompt.runCommand(command + " " + args)
-			
+		if command != "":
+			self.prompt.runCommand(command + " " + args)
+		else:
+			self.prompt.runCommand(args)
 		
 	#-----------------------------------------
 	#Speech Recognition APIs
