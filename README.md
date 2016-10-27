@@ -7,7 +7,7 @@ The goal of this project is to make a free software tool that allows control of 
 Users with motor disability are often unable or severely handicapped to use their hands to interact with a computer. Therefore, using tools that require heavy use of the hands such as the command line interface is unfeasible or impossible for such users. 
 
 ##Motivation 
-As well as being part of a third year BIT project, the main motivation behind the program is for handicapped or challenged people to be able to control the command line whithout having to pay unreasonable prices. Our software is free and anyone can contribute, this is a completely open source.
+As well as being part of a third year BIT project, the main motivation behind the program is to allow people who are unable to type to be able to control the command line whithout having to pay unreasonable prices. Our software is free and anyone can contribute, this is a completely open source.
 
 ##Installation
 To build this software on your computer, you will require the following: 
@@ -19,8 +19,9 @@ To build this software on your computer, you will require the following:
 1. Clone or download this repository to your local machine.
 2. Navigate to the Users folder in the downloaded repository.
 3. Open the application by locating and double clicking the Speech Transcriber file
+	* If a security warning pops up click the "Run" button
 4. Click "Start Speech Recognition" button to start the program searching for speech.
-	* There are different speech recognition services that can be used. To change which one you use make sure that speech recognition is not running then select the circle next to the service you wish to use and then start the speech recognition.
+	* There are different speech recognition services that can be used. To change which one you use make sure that speech recognition is not running then select the circle next to the service you wish to use and then start the speech recognition. CMU Sphinx is the online service that will work offline. All others need to be connected to the internet.
 5. Click into where you would like the words to be placed and then start speaking.
 	* The program will keep transcribing what you say until you tell it to stop.
 	* The enter key is automatically pressed when you have finished speaking so you will need to say everything you wish to all at once.
@@ -44,7 +45,9 @@ To build this software on your computer, you will require the following:
 	```
 	pip install -r requirements.txt
 	```
-6. To Run the program start the gui
+	
+6. Download ActiveTcl from http://www.activestate.com/activetcl/downloads
+7. To Run the program start the gui
 	
 	```
 	python gui.py
