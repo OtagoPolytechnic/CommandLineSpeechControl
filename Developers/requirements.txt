@@ -1,0 +1,6 @@
+SpeechRecognition
+google-api-python-client==1.5.3
+PyAudio
+pypiwin32
+PocketSphinx
+pystray
