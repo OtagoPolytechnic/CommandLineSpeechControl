@@ -15,7 +15,7 @@ To build this software on your computer, you will require the following:
 - Python 2.5 or higher 
 - A high quality microphone or heasdset to improve the speech recognition 
 
-####Users
+###Users
 1. Clone or download this repository to your local machine.
 2. Navigate to the Users folder in the downloaded repository.
 3. Open the application by locating and double clicking the Speech Transcriber file
@@ -26,7 +26,7 @@ To build this software on your computer, you will require the following:
 	* The enter key is automatically pressed when you have finished speaking so you will need to say everything you wish to all at once.
 6. To stop the speech recognition you simply press the "Stop Speech Recognition" button. 
 
-####Developers
+###Developers
 1. Create a python virtual environment on your machine
 
 	```
