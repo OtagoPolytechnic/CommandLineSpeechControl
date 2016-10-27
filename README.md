@@ -1,10 +1,10 @@
 ##Command Line Speech Control
 
 ## Overview 
-The goal of this project is to make a free software tool that allows control of a command line interface through voice commands for people with handicaps.
+The goal of this project is to make a free software tool that allows the user to speak into a microphone and then have that transcribed and entered where the user wants.
 
 ## Background
-Users with motor disability are often unable or severely handicapped to use their hands to interact with a computer. Therefore, using tools that require heavy use of the hands such as the command line interface is unfeasible or impossible for such users. 
+Users with motor disability are often unable to use their hands to interact with a computer. Therefore, using tools that require heavy use of the hands such as typing is unfeasible or impossible for such users. 
 
 ##Motivation 
 As well as being part of a third year BIT project, the main motivation behind the program is to allow people who are unable to type to be able to control the command line whithout having to pay unreasonable prices. Our software is free and anyone can contribute, this is a completely open source.
