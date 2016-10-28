@@ -28,30 +28,9 @@ To build this software on your computer, you will require the following:
 6. To stop the speech recognition you simply press the "Stop Speech Recognition" button. 
 
 ###Developers
-1. Create a python virtual environment on your machine
+1. Clone or download this repository to your local machine.
+2. Follow README in Developers https://github.com/OtagoPolytechnic/CommandLineSpeechControl/tree/master/Developers
 
-	```
-	C:\path\to\virtual\env virtualenv nameofenvironment
-	```
-2. Clone or download this repository to your local machine.
-3. Activate the virtual environment
-
-	```
-	C:\path\to\virtual\env nameofenvironment\Scripts\activate
-	```
-4. Navigate your way to the Developers folder in the repository you downloaded.
-5. Install the dependencies needed to run the program
-
-	```
-	pip install -r requirements.txt
-	```
-	
-6. Download ActiveTcl from http://www.activestate.com/activetcl/downloads
-7. To Run the program start the gui
-	
-	```
-	python gui.py
-	```
 
 ##Contributors
 - David Rozado 
