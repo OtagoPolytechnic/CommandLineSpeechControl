@@ -29,8 +29,7 @@ To build this software on your computer, you will require the following:
 
 ###Developers
 1. Clone or download this repository to your local machine.
-2. Follow README in Developers https://github.com/OtagoPolytechnic/CommandLineSpeechControl/tree/master/Developers
-
+2. Follow [README](https://github.com/OtagoPolytechnic/CommandLineSpeechControl/tree/master/Developers) in Developers
 
 ##Contributors
 - David Rozado 

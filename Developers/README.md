@@ -17,7 +17,7 @@
 	
 4. Download ActiveTcl from http://www.activestate.com/activetcl/downloads
 	* When installing make sure where you are installing it is in the virtual environment
-5. Make sure Tkinter is installed in the virtual environment.
+5. Make sure Tkinter is installed in the virtual environment. There should be a "tkinter" folder in the "Lib" folder of your virtual environment.
 	* If Tkinter is not in the virtual environment you will need to retrieve it from the original python install on you computer. To do this in the file explorer find your python install and in the "Lib" folder find the "tkinter" folder and copy it then paste it in the "Lib" folder of the vitual environment.
 6. To Run the program start the gui.
 	
