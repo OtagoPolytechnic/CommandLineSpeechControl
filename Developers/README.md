@@ -9,14 +9,17 @@
 	```
 
 2. Navigate your way to the Developers folder in the repository you downloaded.
-3. Install the dependencies needed to run the program
+3. Install the dependencies needed to run the program.
 
 	```
 	pip install -r requirements.txt
 	```
 	
 4. Download ActiveTcl from http://www.activestate.com/activetcl/downloads
-5. To Run the program start the gui
+	*When installing make sure where you are installing it is in the virtual environment
+5. Make sure Tkinter is installed in the virtual environment.
+	*If Tkinter is not in the virtual environment you will need to retrieve it from the original python install on you computer. To do this in the file explorer find your python install and in the "Lib" folder find the "tkinter" folder and copy it then paste it in the "Lib" folder of the vitual environment.
+6. To Run the program start the gui.
 	
 	```
 	python gui.py
