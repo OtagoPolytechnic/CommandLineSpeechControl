@@ -20,12 +20,12 @@ To build this software on your computer, you will require the following:
 2. Navigate to the Users folder in the downloaded repository.
 3. Open the application by locating and double clicking the Speech Transcriber file
 	* If a security warning pops up click the "Run" button
-4. Click "Start Speech Recognition" button to start the program searching for speech.
+4. Click "Start Speech Recognition" button or press "F1" on your keyboard to start the program searching for speech.
 	* There are different speech recognition services that can be used. To change which one you use make sure that speech recognition is not running then select the circle next to the service you wish to use and then start the speech recognition. CMU Sphinx is the online service that will work offline. All others need to be connected to the internet.
 5. Click into where you would like the words to be placed and then start speaking.
 	* The program will keep transcribing what you say until you tell it to stop.
 	* The enter key is automatically pressed when you have finished speaking so you will need to say everything you wish to all at once.
-6. To stop the speech recognition you simply press the "Stop Speech Recognition" button. 
+6. To stop the speech recognition you simply press the "Stop Speech Recognition" button or press "F2" on your keyboard. 
 
 ###Developers
 1. Clone or download this repository to your local machine.
