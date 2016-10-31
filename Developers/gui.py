@@ -3,6 +3,7 @@ from tkinter import messagebox
 import speech
 import systray
 from threading import Thread
+import pyHook
 
 class SpeechGui(tkinter.Tk):
 	def __init__(self,parent):
@@ -75,18 +76,28 @@ class SpeechGui(tkinter.Tk):
 		else:
 			messagebox.showinfo("Not Running!","Speech Recognition is not currently running")
 			print("Not Running")
+	
+	#Function for when a key is pressed on the keyboard to see if it is a command key
+	def keyBoardPress(self, event):
+		if event.Key == 'F1':
+			self.onStartBtnClick()
+		if event.Key == 'F2':
+			self.onStopBtnClick()
 		
-	def startFuncKeyPressed(self, event):
-		self.onStartBtnClick()
+		return True
+
 		
-	def stopFuncKeyPressed(self, event):
-		self.onStopBtnClick()
-		
+# create a hook manager for key board presses
+hm = pyHook.HookManager()
+
+#Starts the GUI	
 if __name__=="__main__":
 	app = SpeechGui(None)
 	app.title('Speech Transcriber')
-	app.bind("<F1>", app.startFuncKeyPressed)
-	app.bind("<F2>", app.stopFuncKeyPressed)
+	# watch for all mouse events
+	hm.KeyDown = app.keyBoardPress
+	# set the hook for key presses
+	hm.HookKeyboard()
 	app.mainloop()
 
 	

@@ -19,7 +19,16 @@
 	* When installing make sure where you are installing it is in the virtual environment
 5. Make sure Tkinter is installed in the virtual environment. There should be a "tkinter" folder in the "Lib" folder of your virtual environment.
 	* If Tkinter is not in the virtual environment you will need to retrieve it from the original python install on you computer. To do this in the file explorer find your python install and in the "Lib" folder find the "tkinter" folder and copy it then paste it in the "Lib" folder of the vitual environment.
-6. To Run the program start the gui.
+
+6. Intall pyHook. 
+	* Downlod [pyHook](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook) wheel file
+	* Install using pip
+	
+	```
+	pip install C:\path\to\pyHook\pyHook-1.5.1-cp35-none-win_amd64.whl
+	```
+	
+7. To Run the program start the gui.
 	
 	```
 	python gui.py
@@ -45,6 +54,9 @@ PyPiWin is used to get the process of the application that is currently on the t
 ####Pystray
 This makes a sytem tray for the application. Though it is not currently integrated with the application.
 
+####pyHook
+This module checks when a key on the keyboard has been pressed no matter which application you are in.
+
 ##File Breakdown
 
 ####cloudSpeech
@@ -57,7 +69,7 @@ Takes in an audio file then sends it away to the google cloud service to be tran
 This file contains some commands that are used with the command prompt. Although it currently only contains words related to command prompt commands anything can be added so that if you say a particullar word or phrase it will be replaced with something else. To add to this file simply enter the word or phrase you wish to find in the first column then enter what you would like it to be replaced with in the second column and save the file. 
 
 ####gui
-Has the code that creates the user interface and starts and stops the speech recognition when buttons are pressed.
+Has the code that creates the user interface and starts and stops the speech recognition when buttons are pressed. Also contains the pyHook code for checking key presses from the keyboard and when either 'F1' or 'F2' is pressed no matter which application you are in it will start and stop listening for speech.
 
 ####icon
 This is just the application icon
