@@ -12,7 +12,7 @@ As well as being part of a third year BIT project, the main motivation behind th
 ##Installation
 To build this software on your computer, you will require the following: 
 - Microsoft Windows
-- Python 2.5 or higher 
+- Python 2.6 or higher 
 - A high quality microphone or heasdset to improve the speech recognition 
 
 ###Users

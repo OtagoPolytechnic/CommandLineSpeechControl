@@ -34,10 +34,16 @@
 	python gui.py
 	```
 
+*Google Cloud Service does not work with PyPiWin32 installed but this library is needed to send keystrokes to applications. Since the Google Cloud API is still in beta, this may be a import conflict that gets resolved in a later version of the Google Python API client.
+
+*If you do wish to use the Google Cloud API though you will need to go to the [Google Cloud Platform](https://cloud.google.com/speech/) and activate to Speech Recognition service to receive JSON credentials to accesss the API.
+	
 ##Modules Used
 
 ####SpeechRecognition
 This module is the main module for speech recognition as it has the class that is used for listening to the microphone and getting an audio file. This module also contains the necessary code for the normal Google speech recognition to be used. The module also contains code to use the CMU Sphinx recognition service.
+
+* This module is currently in the process of adding more recognition services(IBM Speech To Text, Microsoft Bing Voice Recognition).
 
 ####PocketSphinx
 This module is for the CMU Sphinx recognition service. This modules is required as the CMU Sphinx service is an offline service. Since it does not need to be connected to the internet the module needs to downloaded as it contains all the necessary elements to do speech recognition.
@@ -46,7 +52,7 @@ This module is for the CMU Sphinx recognition service. This modules is required 
 This is needed for the SpeechRecognition module to work. Without this module SpeechReconition is unable to find a microphone and understand any audio.
 
 ####Google Api Python Client
-This modules contains all the code google requires for their cloud speech recognition to work.
+This modules contains all the code Google requires for their cloud speech recognition to work.
 
 ####PyPiWin32
 PyPiWin is used to get the process of the application that is currently on the top and then sends keystrokes to that application. This module only works with Microsoft Windows computers.
@@ -57,13 +63,18 @@ This makes a sytem tray for the application. Though it is not currently integrat
 ####pyHook
 This module checks when a key on the keyboard has been pressed no matter which application you are in.
 
+####PyInstaller
+This was used to make the python files into and executable for easy use.
+
 ##File Breakdown
 
 ####cloudSpeech
 Calls cloudTranscribe which returns a JSON string then it parses the JSON string to get out the transcript. It then returns the transcript to where ever it was called from.
 
 ####cloudTranscribe
-Takes in an audio file then sends it away to the google cloud service to be transcribed. Google returns a JSON string which this then returns.
+Takes in an audio file then sends it away to the google cloud service to be transcribed. Google returns a JSON string which this then returns. 
+
+* This file should also set the variable "GOOGLE_APPLICATION_CREDENTIALS" for the oauth2client.client file. If you have done this and you are sure that you have made your Google Credentials correct and Enabled billing in the Google developers console, it may be necessary to set the path to the JSON file in the authorization file. To do this in your virtual environment got to "Lib\site-packages\oauth2client\" and open the "client.py" file. Then at this point set the "GOOGLE_APPLICATION_CREDENTIALS" to the json credentials file path. If it still is not working in the same file go to line 1224 and set "credentials_filename" to equal the json credentials file path.
 
 ####commandsFile
 This file contains some commands that are used with the command prompt. Although it currently only contains words related to command prompt commands anything can be added so that if you say a particullar word or phrase it will be replaced with something else. To add to this file simply enter the word or phrase you wish to find in the first column then enter what you would like it to be replaced with in the second column and save the file. 
@@ -85,4 +96,3 @@ This is a bit of a worker class. It is where the functions to start listening an
 
 ####systray(not currently implemented)
 This has the code to create a system tray for the application.
-

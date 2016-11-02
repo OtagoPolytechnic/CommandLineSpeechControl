@@ -15,7 +15,7 @@ DISCOVERY_URL = ('https://{api}.googleapis.com/$discovery/rest?'
 
 
 # Application default credentials provided by env variable
-
+#GOOGLE_APPLICATION_CREDENTIALS="JSONfile.josn"
 def get_speech_service():
     credentials = GoogleCredentials.get_application_default().create_scoped(
         ['https://www.googleapis.com/auth/cloud-platform'])
