@@ -1,4 +1,4 @@
-##Command Line Speech Control
+##Speech Transcriber
 
 ## Overview 
 The goal of this project is to make a free software tool that allows the user to speak into a microphone and then have that transcribed and entered where the user wants.
