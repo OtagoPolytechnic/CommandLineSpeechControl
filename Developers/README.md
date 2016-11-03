@@ -1,26 +1,27 @@
 #Developer
 
 ##Installation and Use
-1. Create a python virtual environment on your machine and activate it.
+1. Install Python (recommended 3.5)
+2. Create a python virtual environment on your machine and activate it.
 
 	```
 	C:\path\to\virtual\env virtualenv nameofenvironment
 	C:\path\to\virtual\env nameofenvironment\Scripts\activate
 	```
 
-2. Navigate your way to the Developers folder in the repository you downloaded.
-3. Install the dependencies needed to run the program.
+3. Navigate your way to the Developers folder in the repository you downloaded.
+4. Install the dependencies needed to run the program.
 
 	```
 	pip install -r requirements.txt
 	```
 	
-4. Download [ActiveTcl](http://www.activestate.com/activetcl/downloads)
+5. Download [ActiveTcl](http://www.activestate.com/activetcl/downloads)
 	* When installing make sure where you are installing it is in the virtual environment
-5. Make sure Tkinter is installed in the virtual environment. There should be a "tkinter" folder in the "Lib" folder of your virtual environment.
+6. Make sure Tkinter is installed in the virtual environment. There should be a "tkinter" folder in the "Lib" folder of your virtual environment.
 	* If Tkinter is not in the virtual environment you will need to retrieve it from the original python install on you computer. To do this in the file explorer find your python install and in the "Lib" folder find the "tkinter" folder and copy it then paste it in the "Lib" folder of the vitual environment.
 
-6. Install pyHook. 
+7. Install pyHook. 
 	* Downlod [pyHook](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook) wheel file
 	* Install using pip
 	
@@ -28,7 +29,7 @@
 	pip install C:\path\to\pyHook\pyHook-1.5.1-cp35-none-win_amd64.whl
 	```
 	
-7. To Run the program start the gui.
+8. To Run the program start the gui.
 	
 	```
 	python gui.py
