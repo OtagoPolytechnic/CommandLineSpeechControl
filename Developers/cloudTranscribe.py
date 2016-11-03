@@ -1,21 +1,21 @@
-# [START import_libraries]
+#File supplied by Google on github: https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/speech/api-client
+
+#Import Files
 import argparse
 import base64
 import json
-
 from googleapiclient import discovery
 import httplib2
 from oauth2client.client import GoogleCredentials
-# [END import_libraries]
 
 
-# [START authenticating]
+#URL to call
 DISCOVERY_URL = ('https://{api}.googleapis.com/$discovery/rest?'
                  'version={apiVersion}')
 
 
 # Application default credentials provided by env variable
-#GOOGLE_APPLICATION_CREDENTIALS="JSONfile.josn"
+# [START authenticataing]
 def get_speech_service():
     credentials = GoogleCredentials.get_application_default().create_scoped(
         ['https://www.googleapis.com/auth/cloud-platform'])
@@ -56,6 +56,7 @@ def main(speech_file):
     # [END construct_request]
     # [START send_request]
     response = service_request.execute()
+	#returns a json dump to be parsed in cloudSpeech file
     return(json.dumps(response))
     # [END send_request]
 

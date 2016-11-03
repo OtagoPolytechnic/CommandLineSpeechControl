@@ -1,7 +1,7 @@
 #Developer
 
 ##Installation and Use
-1. Install Python (recommended 3.5)
+1. Install Python (3.5 recommended)
 2. Create a python virtual environment on your machine and activate it.
 
 	```

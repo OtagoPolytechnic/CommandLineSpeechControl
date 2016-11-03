@@ -1,3 +1,4 @@
+#Import Files
 import time
 from win32com import client
 from  win32gui import GetWindowText, GetForegroundWindow, SetForegroundWindow, EnumWindows
@@ -23,7 +24,7 @@ class CommandPrompt:
             SetForegroundWindow(hwnd)
             return
 
-	#Gets the process id for the command prompt window
+	#Gets the process id for the active application window
     def getPid(self):
         window = GetForegroundWindow()
         return GetWindowThreadProcessId(window)[1]

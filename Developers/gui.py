@@ -1,3 +1,4 @@
+#Import Files
 import tkinter
 from tkinter import messagebox
 import speech
@@ -94,7 +95,7 @@ hm = pyHook.HookManager()
 if __name__=="__main__":
 	app = SpeechGui(None)
 	app.title('Speech Transcriber')
-	# watch for all mouse events
+	# watch for all key events
 	hm.KeyDown = app.keyBoardPress
 	# set the hook for key presses
 	hm.HookKeyboard()

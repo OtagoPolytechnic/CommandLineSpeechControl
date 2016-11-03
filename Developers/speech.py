@@ -1,10 +1,11 @@
 import speech_recognition as sr
+#Import Files
 import re
 import cloudSpeech
 import runCommands
 import csv
 
-
+#This is for the word replacement when using application for commands in the command line
 class WordReplacments:
 
 	def __init__(self, command, replacement):
