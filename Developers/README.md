@@ -37,7 +37,7 @@
 
 *Google Cloud Service does not work with PyPiWin32 installed but this library is needed to send keystrokes to applications. Since the Google Cloud API is still in beta, this may be a import conflict that gets resolved in a later version of the Google Python API client.
 
-*If you do wish to use the Google Cloud API though you will need to go to the [Google Cloud Platform](https://cloud.google.com/speech/) and activate to Speech Recognition service to receive JSON credentials to accesss the API.
+*If you do wish to use the Google Cloud API though you will need to go to the [Google Cloud Platform](https://cloud.google.com/speech/) and activate the Speech Recognition service to receive JSON credentials to accesss the API.
 	
 ##Modules Used
 
@@ -62,7 +62,7 @@ PyPiWin is used to get the process of the application that is currently on the t
 This makes a sytem tray for the application. Though it is not currently integrated with the application.
 
 ####pyHook
-This module checks when a key on the keyboard has been pressed no matter which application you are in.
+This module checks when a key on the keyboard has been pressed no matter which application is active.
 
 ####PyInstaller
 This was used to make the python files into an executable for easy use.
