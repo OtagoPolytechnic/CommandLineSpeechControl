@@ -42,9 +42,9 @@
 ##Modules Used
 
 ####SpeechRecognition
-This module is the main module for speech recognition as it has the class that is used for listening to the microphone and getting an audio file. This module also contains the necessary code for the normal Google speech recognition to be used. The module also contains code to use the CMU Sphinx recognition service.
+This module is the main module for speech recognition as it has the class that is used for listening to the microphone and getting an audio file. This module also contains the necessary code for the normal Google speech recognition to be used. The module also contains code to use the CMU Sphinx recognition service. This works by creating an audio file that is then sent away, to whichever speech recognition service is being used, then returns the text as a string.
 
-* This module is currently in the process of adding more recognition services(IBM Speech To Text, Microsoft Bing Voice Recognition).
+* This module has been updated and more recognition services(IBM Speech To Text, Microsoft Bing Voice Recognition, and others).
 
 ####PocketSphinx
 This module is for the CMU Sphinx recognition service. This modules is required as the CMU Sphinx service is an offline service. Since it does not need to be connected to the internet the module needs to downloaded as it contains all the necessary elements to do speech recognition.
@@ -54,6 +54,8 @@ This is needed for the SpeechRecognition module to work. Without this module Spe
 
 ####Google Api Python Client
 This modules contains all the code Google requires for their cloud speech recognition to work.
+
+* This module contains the ability to transcribe an audio stream, the documentation for which can be found [here.](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/speech/grpc) Streaming will send the speech away to be transcribed while you are still speaking. Using this should increase the speed at which the speech is converted to text.
 
 ####PyPiWin32
 PyPiWin is used to get the process of the application that is currently on the top and then sends keystrokes to that application. This module only works with Microsoft Windows computers.
